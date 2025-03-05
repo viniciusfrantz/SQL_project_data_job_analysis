@@ -14,11 +14,16 @@ SELECT
 FROM 
     job_postings_fact
 LEFT JOIN company_dim ON job_postings_fact.company_id = company_dim.company_id
-
 WHERE
-    job_title_short = 'Data Analyst' AND
-    salary_year_avg IS NOT NULL AND
-    job_location = 'Anywhere'
+    job_title_short = 'Data Scientist'
+    AND salary_year_avg IS NOT NULL
+    --AND job_location = 'Anywhere' 
+    AND job_title NOT LIKE '%Director%'
+    AND job_title NOT LIKE '%Head%' 
+    AND job_title NOT LIKE '%Principal%'
+    AND job_title NOT LIKE '%Chief%'
+    AND job_title NOT LIKE '%President%'
+    AND job_title NOT LIKE '%Manager%'
 ORDER BY
     salary_year_avg DESC
 LIMIT 10;
